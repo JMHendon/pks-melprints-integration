@@ -28,6 +28,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+const loggingMiddleware = require('my-logging-middleware')
+app.use(loggingMiddleware);
 
 app.post('/send-order-to-melprints', async function(req,res) {
     
