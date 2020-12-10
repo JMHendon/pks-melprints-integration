@@ -102,7 +102,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
     console.log('Unknown or blank product SKU.');
   } else if ( product_quantity < 1) {
     console.log('Insufficient Quantity.');
-  } else if ( empty(buyer_first_name) || empty(buyer_last_name) || empty(buyer_email) || empty(shipping_line_1) || empty(shipping_city) || empty(shipping_country)) {
+  } else if ( !buyer_first_name || !buyer_last_name || !buyer_email || !shipping_line_1 || !shipping_city || !shipping_country ) {
     console.log('Missing vital shipping information');
   } else {
     res.send(post_order_to_MelPrints(post_data));
