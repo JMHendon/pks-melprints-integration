@@ -28,6 +28,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // const { createLogger, transports, format } = require('winston');
 
 // const logger = createLogger({
@@ -50,8 +52,8 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   console.log("string as argument one", req)
 
-  let pks_event = req.query.event;
-  let pks_mode = req.query.mode;
+  let pks_event = req.params.event;
+  let pks_mode = req.body.mode;
 
   console.log(pks_event);
   console.log(pks_mode);
@@ -59,7 +61,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
 
   console.log(buyer_first_name);
-  
+
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
   let buyer_phone_number = (req.body.buyer_phone !== undefined) ? req.body.buyer_phone : ''; 
