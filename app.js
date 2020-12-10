@@ -50,13 +50,6 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   logger.info(JSON.stringify(req.body));
     
-  if (req.body.event && req.body.mode) {
-      var pks_event = req.body.event;
-      var pks_mode = req.body.mode;
-  } else {
-      console.log('Either the event or mode field is empty.');
-  }
-
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
@@ -121,7 +114,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
       }
   }
 
-  if ( pks_event !== 'sales' || pks_mode !== 'live') {
+  if ( pks_event !== 'sales' || pks_mode !== 'test') {
     console.log('This was not a sales event or it was not live.');
   } else if ( productSku == '') {
     console.log('Unknown or blank product SKU.');
