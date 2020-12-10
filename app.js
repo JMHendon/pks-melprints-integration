@@ -28,30 +28,33 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-const { createLogger, transports, format } = require('winston');
+// const { createLogger, transports, format } = require('winston');
 
-const logger = createLogger({
-  format: format.combine(
-    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-    format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
-  ),
-  transports: [
-    new transports.File({
-      filename: 'temp-logs.txt',
-      json: false,
-      maxsize: 5242880,
-      maxFiles: 5,
-    }),
-    new transports.Console(),
-  ]
-});
+// const logger = createLogger({
+//   format: format.combine(
+//     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+//     format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+//   ),
+//   transports: [
+//     new transports.File({
+//       filename: 'temp-logs.txt',
+//       json: false,
+//       maxsize: 5242880,
+//       maxFiles: 5,
+//     }),
+//     new transports.Console(),
+//   ]
+// });
 
 app.post('/send-order-to-melprints', async function(req,res) {
 
-  console.log(JSON.stringify(req.body));
+  console.log(JSON.stringify(req));
 
-  let pks_event = req.body.event;
-  let pks_mode = req.body.mode;
+  let pks_event = req.param('event');
+  let pks_mode = req.param('mode');
+
+  console.log(pks_event);
+  console.log(pks_mode);
     
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
