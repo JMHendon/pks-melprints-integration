@@ -38,7 +38,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
-  let buyer_phone_number = (req.body.custom_shippingPhoneNumber !== undefined) ? req.body.custom_shippingPhoneNumber : ''; 
+  let buyer_phone_number = (req.body['custom_shippingPhoneNumber'] !== undefined) ? req.body['custom_shippingPhoneNumber'] : ''; 
   let shipping_line_1 = (req.body.shipping_address_1 !== undefined) ? req.body.shipping_address_1 : ''; 
   let shipping_line_2 = (req.body.shipping_address_2 !== undefined) ? req.body.shipping_address_2 : ''; 
   let shipping_city = (req.body.shipping_city !== undefined) ? req.body.shipping_city : ''; 
