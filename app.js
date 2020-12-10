@@ -38,19 +38,17 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
-  let buyer_phone_number = (req.body.buyer_phone !== undefined) ? req.body.buyer_phone : ''; 
+  let buyer_phone_number = (req.body.custom_shipping-phone-number !== undefined) ? req.body.custom_shipping-phone-number : ''; 
   let shipping_line_1 = (req.body.shipping_address_1 !== undefined) ? req.body.shipping_address_1 : ''; 
   let shipping_line_2 = (req.body.shipping_address_2 !== undefined) ? req.body.shipping_address_2 : ''; 
   let shipping_city = (req.body.shipping_city !== undefined) ? req.body.shipping_city : ''; 
   let shipping_state = (req.body.shipping_state !== undefined) ? req.body.shipping_state : ''; 
   let shipping_zip = (req.body.shipping_zip !== undefined) ? req.body.shipping_zip : ''; 
   let shipping_country = (req.body.shipping_country !== undefined) ? req.body.shipping_country : ''; 
-  let ship_method = (req.body.buyer_phone !== undefined) ? req.body.buyer_phone : 'usps_media'; 
+  let ship_method = (req.body.custom_shipping-method !== undefined) ? req.body.custom_shipping-method : 'usps_media'; 
   let product_quantity = (req.body.quantity !== undefined) ? req.body.quantity : 1;
 
-  console.log(product_quantity);
-
-   switch (req.body.product_name) {
+  switch (req.body.product_name) {
     case 'Keto Ckbk Shipping (EKC)':
       var product_SKU = 'jl_essential_keto_cookbook';
       break;
