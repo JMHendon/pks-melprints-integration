@@ -37,7 +37,7 @@ const logger = createLogger({
   ),
   transports: [
     new transports.File({
-      filename: '/logs/all-logs.log',
+      filename: 'temp-logs.txt',
       json: false,
       maxsize: 5242880,
       maxFiles: 5,
