@@ -76,10 +76,12 @@ app.post('/send-order-to-melprints', async function(req,res) {
           }
       },
       'shipMethod': ship_method,
-      'LineItems': {
+      'LineItems': [
+        {
           'productSku': product_SKU,
           'productQty': product_quantity
-      }
+        }
+      ]
   }
 
   console.log(post_data.shipMethod);
