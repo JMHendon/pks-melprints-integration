@@ -28,24 +28,6 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }));
 
-// const { createLogger, transports, format } = require('winston');
-
-// const logger = createLogger({
-//   format: format.combine(
-//     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-//     format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
-//   ),
-//   transports: [
-//     new transports.File({
-//       filename: 'temp-logs.txt',
-//       json: false,
-//       maxsize: 5242880,
-//       maxFiles: 5,
-//     }),
-//     new transports.Console(),
-//   ]
-// });
-
 app.post('/send-order-to-melprints', async function(req,res) {
 
   // console.log("string as argument one", req)
@@ -64,20 +46,17 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let shipping_zip = (req.body.shipping_zip !== undefined) ? req.body.shipping_zip : ''; 
   let shipping_country = (req.body.shiping_country !== undefined) ? req.body.shiping_country : ''; 
   let ship_method = (req.body.buyer_phone !== undefined) ? req.body.buyer_phone : 'usps_media'; 
-  let product_quantity = (req.body.quantity !== undefined) ? req.body.quantity : 0;
+  let product_quantity = (req.body.quantity !== undefined) ? req.body.quantity : 1;
 
-  let array_of_PKS_product_names = [
-    ''
-  ];
+  console.log(product_quantity);
 
-  switch (req.body.product_name) {
+   switch (req.body.product_name) {
     case 'Keto Ckbk Shipping (EKC)':
       var product_SKU = 'jl_essential_keto_cookbook';
       break;
     default:
       var product_SKU = '';
   }
-
   
   let post_data = {
       'APIKey': process.env.APIKey,
