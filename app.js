@@ -59,29 +59,29 @@ app.post('/send-order-to-melprints', async function(req,res) {
   }
   
   let post_data = {
-      'APIKey': process.env.APIKey,
-      'sandbox': '',
-      'Order': {
-          'deliveryContact': {
-              'firstName': buyer_first_name,
-              'lastName': buyer_last_name,
-              'email': buyer_email,
-              'phone': buyer_phone_number,
-              'addressLine1': shipping_line_1,
-              'addressLine2': shipping_line_2,
-              'city': shipping_city,
-              'state': shipping_state,
-              'zip': shipping_zip,
-              'country': shipping_country
-          }
-      },
-      'shipMethod': ship_method,
-      'LineItems': [
-        {
-          'productSku': product_SKU,
-          'productQty': product_quantity
+    'APIKey': process.env.APIKey,
+    'sandbox': '',
+    'Order': {
+        'deliveryContact': {
+            'firstName': buyer_first_name,
+            'lastName': buyer_last_name,
+            'email': buyer_email,
+            'phone': buyer_phone_number,
+            'addressLine1': shipping_line_1,
+            'addressLine2': shipping_line_2,
+            'city': shipping_city,
+            'state': shipping_state,
+            'zip': shipping_zip,
+            'country': shipping_country
         }
-      ]
+    },
+    'shipMethod': ship_method,
+    'LineItems': [
+      {
+        'productSku': product_SKU,
+        'productQty': product_quantity
+      }
+    ]
   }
 
   console.log(post_data.shipMethod);
