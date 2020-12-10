@@ -50,16 +50,10 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   console.log("string as argument one", req)
 
-  let pks_event = req.params.event;
+  let pks_event = req.body.event;
   let pks_mode = req.body.mode;
-
-  console.log(pks_event);
-  console.log(pks_mode);
     
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
-
-  console.log(buyer_first_name);
-
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
   let buyer_phone_number = (req.body.buyer_phone !== undefined) ? req.body.buyer_phone : ''; 
