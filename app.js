@@ -28,8 +28,25 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-const loggingMiddleware = require('my-logging-middleware')
-app.use(loggingMiddleware);
+const { createLogger, transports, format } = require('winston');
+
+const logger = createLogger({
+  format: format.combine(
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+    format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+  ),
+  transports: [
+    new transports.File({
+      filename: '/logs/all-logs.log',
+      json: false,
+      maxsize: 5242880,
+      maxFiles: 5,
+    }),
+    new transports.Console(),
+  ]
+});
+
+module.exports = logger;
 
 app.post('/send-order-to-melprints', async function(req,res) {
     
