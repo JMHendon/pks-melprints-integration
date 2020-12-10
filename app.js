@@ -38,7 +38,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
-  let buyer_phone_number = (req.body.custom_shipping-phone-number !== undefined) ? req.body.custom_shipping-phone-number : ''; 
+  let buyer_phone_number = (req.body.custom_shipping-phoneNumber !== undefined) ? req.body.custom_shipping-phoneNumber : ''; 
   let shipping_line_1 = (req.body.shipping_address_1 !== undefined) ? req.body.shipping_address_1 : ''; 
   let shipping_line_2 = (req.body.shipping_address_2 !== undefined) ? req.body.shipping_address_2 : ''; 
   let shipping_city = (req.body.shipping_city !== undefined) ? req.body.shipping_city : ''; 
@@ -49,6 +49,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let product_quantity = (req.body.quantity !== undefined) ? req.body.quantity : 1;
 
   console.log(ship_method);
+  console.log(buyer_phone_number);
 
   switch (req.body.product_name) {
     case 'Keto Ckbk Shipping (EKC)':
