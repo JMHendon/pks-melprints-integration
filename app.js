@@ -48,7 +48,7 @@ app.use(express.json());
 
 app.post('/send-order-to-melprints', async function(req,res) {
 
-  console.log(JSON.stringify(req));
+  console.log("string as argument one", req)
 
   let pks_event = req.param('event');
   let pks_mode = req.param('mode');
