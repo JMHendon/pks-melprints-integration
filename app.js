@@ -30,15 +30,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post('/send-order-to-melprints', async function(req,res) {
 
-  // console.log("string as argument one", req)
-
   let pks_event = req.body.event;
   let pks_mode = req.body.mode;
     
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
   let buyer_email = (req.body.buyer_email !== undefined) ? req.body.buyer_email : ''; 
-  let buyer_phone_number = (req.body['custom_shippingPhoneNumber'] !== undefined) ? req.body['custom_shippingPhoneNumber'] : ''; 
+  let buyer_phone_number = (req.body['custom_shipping-phone-number'] !== undefined) ? req.body['custom_shipping-phone-number'] : ''; 
   let shipping_line_1 = (req.body.shipping_address_1 !== undefined) ? req.body.shipping_address_1 : ''; 
   let shipping_line_2 = (req.body.shipping_address_2 !== undefined) ? req.body.shipping_address_2 : ''; 
   let shipping_city = (req.body.shipping_city !== undefined) ? req.body.shipping_city : ''; 
@@ -107,7 +105,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
     console.log(`${buyer_first_name} - ${buyer_last_name} - ${buyer_email} - ${shipping_line_1} - ${shipping_city} - ${shipping_zip} - ${shipping_country}`);
     console.log('Missing vital shipping information');
   } else {
-    res.send(post_order_to_MelPrints(post_data.status));
+    res.send(post_order_to_MelPrints(post_data));
   };
 
 });
@@ -133,7 +131,7 @@ const post_to_MelPrints = (body, callback_function,callback_function_body) => {
       if (response_code >= 200 && response_code < 300 ) {
         callback_function(callback_function_body);
       };
-      return jsonResponse;
+      return response_code;
   })
   .catch( error => {
       return new OperationResult(null, error);
