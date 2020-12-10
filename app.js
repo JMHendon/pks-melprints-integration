@@ -8,8 +8,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'jeremy@nourishing.group',
-    pass: 'yourpassword'
+    user: process.env.gmail_user_name,
+    pass: process.env.gmail_app_password
   }
 });
 
@@ -80,19 +80,26 @@ app.post('/send-order-to-melprints', async function(req,res) {
               'zip': shipping_zip,
               'country': shipping_country
           }
-      }
+      },
       'shipMethod': ship_method,
       'LineItems': {
           'productSku': product_SKU,
           'productQty': product_quantity
       }
   }
+
+  let confirmation_email_body = {
+    'product': product_SKU,
+    'subject': 'Order successfully posted to MelPrints',
+    'body': 'The order for ' & buyer_first_name & ' of ' & product_SKU & ' has been posted successfully to Melprints.'
+  }
   
   let post_order_to_MelPrints = async (body) => {
       if (body) {
-        return post_to_MelPrints(body,send_confirmation_email);
+        return post_to_MelPrints(body,send_confirmation_email,confirmation_email_body);
+      } else {
+        return 'Missing Body Data.';
       }
-      return 'Missing Body Data.';
   }
 
   if ( pks_event !== 'sales' || pks_mode !== 'live') {
@@ -109,7 +116,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
 });
 
-const post_to_MelPrints = (body, callback) => {
+const post_to_MelPrints = (body, callback_function,callback_function_body) => {
   let melprints_API_URL = process.env.MelPrints_API_URL;
 
   let axios_Object_Data = {
@@ -127,10 +134,32 @@ const post_to_MelPrints = (body, callback) => {
       console.log(response_code);
       console.log(data);
       console.log("end of log from app.js response");
+      if (response_code >= 200 && response_code < 300 ) {
+        callback_function(callback_function_body);
+      };
       return data;
   })
   .catch( error => {
       return new OperationResult(null, error);
+  });
+
+};
+
+let send_confirmation_email = (confirmation_email_body) => {
+
+  var mailOptions = {
+    from: process.env.gmail_user_name,
+    to: hidohebhi@gmail.com,
+    subject: confirmation_email_body.subject,
+    text: confirmation_email_body.body
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
   });
 
 };
@@ -180,11 +209,7 @@ class OperationResult {
     }
 }
 
-let send_confirmation_email = (body) => {
 
-}
-
-// [function to send email - https://www.w3schools.com/nodejs/nodejs_email.asp]
 
 // [add 10 minute delay]
 
