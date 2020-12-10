@@ -50,8 +50,8 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   console.log("string as argument one", req)
 
-  let pks_event = req.param('event');
-  let pks_mode = req.param('mode');
+  let pks_event = req.params['event'];
+  let pks_mode = req.params['mode'];
 
   console.log(pks_event);
   console.log(pks_mode);
