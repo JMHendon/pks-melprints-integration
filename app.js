@@ -82,6 +82,8 @@ app.post('/send-order-to-melprints', async function(req,res) {
       }
   }
 
+  console.log(post_data.shipMethod);
+
   let confirmation_email_body = {
     'product': product_SKU,
     'subject': 'Order successfully posted to MelPrints',
@@ -206,7 +208,7 @@ class OperationResult {
 
 
 
-// [add 10 minute delay]
+// [add 45 minute delay]
 
 // [function to send email on error]
 
