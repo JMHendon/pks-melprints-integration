@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     return next();
 });
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // const { createLogger, transports, format } = require('winston');
 
@@ -48,7 +48,7 @@ app.use(express.urlencoded());
 
 app.post('/send-order-to-melprints', async function(req,res) {
 
-  console.log("string as argument one", req)
+  // console.log("string as argument one", req)
 
   let pks_event = req.body.event;
   let pks_mode = req.body.mode;
@@ -119,7 +119,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   if ( pks_event !== 'sales' || pks_mode !== 'test') {
     console.log('This was not a sales event or it was not live.');
-  } else if ( productSku == '') {
+  } else if ( product_SKU == '') {
     console.log('Unknown or blank product SKU.');
   } else if ( product_quantity < 1) {
     console.log('Insufficient Quantity.');
