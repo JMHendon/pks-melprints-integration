@@ -49,6 +49,9 @@ const logger = createLogger({
 app.post('/send-order-to-melprints', async function(req,res) {
 
   logger.info(JSON.stringify(req.body));
+
+  let pks_event = req.body.event;
+  let pks_mode = req.body.mode;
     
   let buyer_first_name = (req.body.buyer_first_name !== undefined) ? req.body.buyer_first_name : ''; 
   let buyer_last_name = (req.body.buyer_last_name !== undefined) ? req.body.buyer_last_name : ''; 
