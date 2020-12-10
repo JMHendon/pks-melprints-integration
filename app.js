@@ -86,7 +86,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let confirmation_email_body = {
     'product': product_SKU,
     'subject': 'Order successfully posted to MelPrints',
-    'body': 'The order for ' & buyer_first_name & ' of ' & product_SKU & ' has been posted successfully to Melprints.'
+    'body_of_email': 'The order for ' & buyer_first_name & ' of ' & product_SKU & ' has been posted successfully to Melprints.'
   }
   
   let post_order_to_MelPrints = async (body) => {
@@ -107,7 +107,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
     console.log(`${buyer_first_name} - ${buyer_last_name} - ${buyer_email} - ${shipping_line_1} - ${shipping_city} - ${shipping_zip} - ${shipping_country}`);
     console.log('Missing vital shipping information');
   } else {
-    res.send(post_order_to_MelPrints(post_data));
+    res.send(post_order_to_MelPrints(post_data.status));
   };
 
 });
@@ -133,7 +133,7 @@ const post_to_MelPrints = (body, callback_function,callback_function_body) => {
       if (response_code >= 200 && response_code < 300 ) {
         callback_function(callback_function_body);
       };
-      return data;
+      return jsonResponse;
   })
   .catch( error => {
       return new OperationResult(null, error);
@@ -147,7 +147,7 @@ let send_confirmation_email = (confirmation_email_body) => {
     from: process.env.gmail_user_name,
     to: 'hidohebhi@gmail.com',
     subject: confirmation_email_body.subject,
-    text: confirmation_email_body.body
+    text: confirmation_email_body.body_of_email
   };
   
   transporter.sendMail(mailOptions, function(error, info){
