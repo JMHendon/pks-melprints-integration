@@ -26,9 +26,7 @@ app.use((req, res, next) => {
     return next();
 });
 
-app.use(express.json());
-
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
 // const { createLogger, transports, format } = require('winston');
 
