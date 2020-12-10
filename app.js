@@ -45,8 +45,10 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let shipping_state = (req.body.shipping_state !== undefined) ? req.body.shipping_state : ''; 
   let shipping_zip = (req.body.shipping_zip !== undefined) ? req.body.shipping_zip : ''; 
   let shipping_country = (req.body.shipping_country !== undefined) ? req.body.shipping_country : ''; 
-  let ship_method = (req.body.custom_shipping-method !== undefined) ? req.body.custom_shipping-method : 'usps_media'; 
+  let ship_method = (req.body.custom_shippingMethod !== undefined) ? req.body.custom_shippingMethod : 'usps_media'; 
   let product_quantity = (req.body.quantity !== undefined) ? req.body.quantity : 1;
+
+  console.log(ship_method);
 
   switch (req.body.product_name) {
     case 'Keto Ckbk Shipping (EKC)':
