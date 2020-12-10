@@ -83,6 +83,8 @@ app.post('/send-order-to-melprints', async function(req,res) {
   }
 
   console.log(post_data.shipMethod);
+  console.log(post_data);
+  console.log(JSON.stringify(post_data));
 
   let confirmation_email_body = {
     'product': product_SKU,
