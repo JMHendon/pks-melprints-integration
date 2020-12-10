@@ -149,7 +149,7 @@ let send_confirmation_email = (confirmation_email_body) => {
 
   var mailOptions = {
     from: process.env.gmail_user_name,
-    to: hidohebhi@gmail.com,
+    to: 'hidohebhi@gmail.com',
     subject: confirmation_email_body.subject,
     text: confirmation_email_body.body
   };
