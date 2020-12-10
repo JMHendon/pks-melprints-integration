@@ -46,9 +46,9 @@ const logger = createLogger({
   ]
 });
 
-module.exports = logger;
-
 app.post('/send-order-to-melprints', async function(req,res) {
+
+  logger.info(req.body);
     
   if (req.body.event && req.body.mode) {
       var pks_event = req.body.event;
