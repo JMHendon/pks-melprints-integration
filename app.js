@@ -4,6 +4,15 @@ const port = process.env.PORT || 3001;
 
 const axios = require('axios');
 
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'jeremy@nourishing.group',
+    pass: 'yourpassword'
+  }
+});
+
 const all_http_headers = {
     "Content-type": "application/json",
     "Accept": "application/json"
@@ -50,7 +59,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
     case 'Keto Ckbk Shipping (EKC)':
       var product_SKU = 'jl_essential_keto_cookbook';
       break;
-  } default {
+    default:
       var product_SKU = '';
   }
 
@@ -169,6 +178,10 @@ class OperationResult {
         }
       }
     }
+}
+
+let send_confirmation_email = (body) => {
+
 }
 
 // [function to send email - https://www.w3schools.com/nodejs/nodejs_email.asp]
