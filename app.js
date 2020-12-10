@@ -84,7 +84,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   let confirmation_email_body = {
     'product': product_SKU,
     'subject': 'Order successfully posted to MelPrints',
-    'body_of_email': 'The order for ' & buyer_first_name & ' of ' & product_SKU & ' has been posted successfully to Melprints.'
+    'body_of_email': 'The order for ' + buyer_first_name + ' of ' + product_SKU + ' has been posted successfully to Melprints.'
   }
   
   let post_order_to_MelPrints = async (body) => {
