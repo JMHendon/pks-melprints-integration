@@ -88,9 +88,6 @@ app.post('/send-order-to-melprints', async function(req,res) {
     }
   }
 
-  console.log(post_data.shipMethod);
-  console.log(post_data);
-
   let confirmation_email_data = {
     'email_recipient': 'hidohebhi@gmail.com',
     'product': product_SKU,
@@ -142,11 +139,7 @@ const post_to_MelPrints = (body, callback_function,callback_function_body) => {
   return axios(axios_Object_Data)
   .then( async response => {
     const jsonResponse = await response;
-      const data = jsonResponse.data;
       const response_code = jsonResponse.status;
-      console.log(response_code);
-      console.log(data);
-      console.log("end of log from app.js response");
       if (response_code >= 200 && response_code < 300 ) {
         callback_function(callback_function_body);
       };
@@ -158,7 +151,7 @@ const post_to_MelPrints = (body, callback_function,callback_function_body) => {
 
 };
 
-/** App for Putting PKS Order Info (like Address) into Maropost */
+/** App for Putting PKS Contact Info (like Address) into Maropost */
 app.post('/pks-order-to-maropost-update-or-create-contact', async function (req, res) {
 
   let pks_event = req.body.event;
