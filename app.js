@@ -205,20 +205,21 @@ app.post('/pks-order-to-maropost-update-or-create-contact', async function (req,
 
   console.log(contact_info);
 
-  const add_or_update_response = add_or_update_contact_in_maropost(buyer_email,contact_info);
+  async function add_or_update_response = () => {
+    await add_or_update_contact_in_maropost(buyer_email,contact_info);
+    console.log(add_or_update_response);
+  };
 
-  console.log(add_or_update_response);
-  
   res.send(add_or_update_response);
 
 })
 
 /** Function to Add or Update Contact in Maropost - Depending on if Exists **/
 
-const add_or_update_contact_in_maropost = (email_address, contact_data_object) => {
+const add_or_update_contact_in_maropost = async (email_address, contact_data_object) => {
   
-  const delayed_get_and_update_function = () => {
-    let contact_info_object = get_contact_info(email_address);
+  const delayed_get_and_update_function = async () => {
+    let contact_info_object = await get_contact_info(email_address);
     console.log(contact_info_object);
     let contact_UID = contact_info_object.data.uid;
     console.log(contact_UID);
@@ -236,7 +237,7 @@ const add_or_update_contact_in_maropost = (email_address, contact_data_object) =
 
 /** General Function to Get Contact Info By Email **/
 
-const get_contact_info = (email_address) => {
+const get_contact_info = async (email_address) => {
   let mp_get_contact_info_url = 'https://api.maropost.com/accounts/2264/contacts/email.json?contact[email]=' + email_address;
 
   let axios_get_contact_input_data = {
