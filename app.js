@@ -204,8 +204,12 @@ app.post('/pks-order-to-maropost-update-or-create-contact', async function (req,
   };
 
   console.log(contact_info);
+
+  const add_or_update_response = add_or_update_contact_in_maropost(buyer_email,contact_info);
+
+  console.log(add_or_update_response);
   
-  res.send(add_or_update_contact_in_maropost(buyer_email,contact_info));
+  res.send(add_or_update_response);
 
 })
 
