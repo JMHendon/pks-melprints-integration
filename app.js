@@ -199,12 +199,20 @@ app.post('/pks-order-to-maropost-update-or-create-contact', async function (req,
   console.log(contact_info);
 
   async function add_or_update_response () {
-    await add_or_update_contact_in_maropost(buyer_email,contact_info);
+    
     console.log(add_or_update_response);
   };
 
-  res.send(add_or_update_response());
+  let result = await await add_or_update_contact_in_maropost(buyer_email,contact_info);
 
+  if (result.isSuccess) {
+    let myReports = result.data;
+    return res.send(myReports);
+  } else {
+    return "Request Failed";
+  }
+
+  
 })
 
 /** Function to Add or Update Contact in Maropost - Depending on if Exists **/
