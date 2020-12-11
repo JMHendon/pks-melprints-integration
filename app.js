@@ -205,7 +205,7 @@ app.post('/pks-order-to-maropost-update-or-create-contact', async function (req,
 
   console.log(contact_info);
 
-  async function add_or_update_response = () => {
+  async function add_or_update_response () {
     await add_or_update_contact_in_maropost(buyer_email,contact_info);
     console.log(add_or_update_response);
   };
