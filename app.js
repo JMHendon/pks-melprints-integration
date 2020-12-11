@@ -219,6 +219,7 @@ const add_or_update_contact_in_maropost = (email_address, contact_data_object) =
   
   const delayed_get_and_update_function = () => {
     let contact_info_object = get_contact_info(email_address);
+    console.log(contact_info_object);
     let contact_UID = contact_info_object.data.uid;
     console.log(contact_UID);
 
