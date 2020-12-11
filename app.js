@@ -290,7 +290,7 @@ const update_contact_in_maropost = (uid,contact_data_object) => {
 const add_or_update_contact_in_maropost = (email_address, contact_data_object) => {
   
   const delayed_get_and_update_function = () => {
-    let contact_info_object = await get_contact_UID(email_address);
+    let contact_info_object = get_contact_UID(email_address);
     let contact_UID = contact_info_object.data.uid;
 
     if (contact_UID) {
