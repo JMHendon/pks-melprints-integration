@@ -213,6 +213,26 @@ app.post('/pks-order-to-maropost-update-or-create-contact', async function (req,
 
 })
 
+/** Function to Add or Update Contact in Maropost - Depending on if Exists **/
+
+const add_or_update_contact_in_maropost = (email_address, contact_data_object) => {
+  
+  const delayed_get_and_update_function = () => {
+    let contact_info_object = get_contact_info(email_address);
+    let contact_UID = contact_info_object.data.uid;
+    console.log(contact_UID);
+
+    if (contact_UID) {
+      return update_contact_in_maropost(contact_UID,contact_data_object);    
+    } else {
+      return add_contact_to_maropost(contact_data_object);
+    }
+  }
+  
+  return delayed_get_and_update_function();
+
+}
+
 /** General Function to Get Contact Info By Email **/
 
 const get_contact_info = (email_address) => {
@@ -293,25 +313,7 @@ const update_contact_in_maropost = (uid,contact_data_object) => {
 }
 
 
-/** Function to Add or Update Contact in Maropost - Depending on if Exists **/
 
-const add_or_update_contact_in_maropost = (email_address, contact_data_object) => {
-  
-  const delayed_get_and_update_function = () => {
-    let contact_info_object = get_contact_info(email_address);
-    let contact_UID = contact_info_object.data.uid;
-    console.log(contact_UID);
-
-    if (contact_UID) {
-      return update_contact_in_maropost(contact_UID,contact_data_object);    
-    } else {
-      return add_contact_to_maropost(contact_data_object);
-    }
-  }
-  
-  return delayed_get_and_update_function;
-
-}
 
 
 
