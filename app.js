@@ -300,7 +300,7 @@ const add_or_update_contact_in_maropost = (email_address, contact_data_object) =
     }
   }
   
-  return setTimeout(delayed_get_and_update_function,150000);
+  return delayed_get_and_update_function;
 
 }
 
