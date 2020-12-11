@@ -64,7 +64,7 @@ app.post('/send-order-to-melprints', async function(req,res) {
   
   let post_data = {
     'APIKey': process.env.APIKey,
-    'sandbox': '',
+    'sandbox': 'yes',
     'Order': {
         'deliveryContact': {
             'firstName': buyer_first_name,
