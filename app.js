@@ -225,7 +225,7 @@ const add_or_update_contact_in_maropost = async (email_address, contact_data_obj
     let contact_ID = contact_info_object.data.id;
     console.log(contact_ID);
 
-    if (contact_UID) {
+    if (contact_ID) {
       return update_contact_in_maropost(contact_ID,contact_data_object);    
     } else {
       return add_contact_to_maropost(contact_data_object);
