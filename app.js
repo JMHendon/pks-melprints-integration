@@ -214,11 +214,11 @@ const add_or_update_contact_in_maropost = async (email_address, contact_data_obj
   const delayed_get_and_update_function = async () => {
     let contact_info_object = await get_contact_info(email_address);
     console.log(contact_info_object);
-    let contact_UID = contact_info_object.data.uid;
-    console.log(contact_UID);
+    let contact_ID = contact_info_object.data.id;
+    console.log(contact_ID);
 
     if (contact_UID) {
-      return update_contact_in_maropost(contact_UID,contact_data_object);    
+      return update_contact_in_maropost(contact_ID,contact_data_object);    
     } else {
       return add_contact_to_maropost(contact_data_object);
     }
@@ -244,7 +244,7 @@ const get_contact_info = async (email_address) => {
     const jsonResponse = await response;
     console.log(jsonResponse);
     console.log(jsonResponse.data);
-    console.log(jsonResponse.data.uid);
+    console.log(jsonResponse.data.id);
     return jsonResponse;
   })
   .catch( error => {
