@@ -231,7 +231,7 @@ const add_or_update_contact_in_maropost = async (email_address, contact_data_obj
 /** General Function to Get Contact Info By Email **/
 
 const get_contact_info = async (email_address) => {
-  let mp_get_contact_info_url = 'https://api.maropost.com/accounts/2264/contacts/email.json?contact[email]=' + email_address;
+  let mp_get_contact_info_url = 'https://api.maropost.com/accounts/2264/contacts/email.json?contact[email]=' + email_address + '&auth_token='+process.env.mp_auth_token;
 
   let axios_get_contact_input_data = {
     method: 'get',
@@ -257,7 +257,7 @@ const get_contact_info = async (email_address) => {
 
 const add_contact_to_maropost = (contact_data_object) => {
     
-  let mp_add_contact_url = 'https://api.maropost.com/accounts/2264/contacts.json';
+  let mp_add_contact_url = 'https://api.maropost.com/accounts/2264/contacts.json?auth_token='+process.env.mp_auth_token;
 
   let axios_Object_Data = {
       method: 'post',
@@ -283,7 +283,7 @@ const add_contact_to_maropost = (contact_data_object) => {
 
 const update_contact_in_maropost = (uid,contact_data_object) => {
     
-  let mp_update_contact_url = 'https://api.maropost.com/accounts/2264/contacts/' + uid + '.json';
+  let mp_update_contact_url = 'https://api.maropost.com/accounts/2264/contacts/' + uid + '.json?auth_token='+process.env.mp_auth_token;
 
   let axios_Object_Data = {
       method: 'put',
